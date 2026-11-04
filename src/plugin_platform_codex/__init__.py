@@ -1,4 +1,4 @@
-"""Codex (OpenAI) for Liminal: an AI assistant plugin (liminal_lib.assistants, plugin API 2.0) that
+"""Codex (OpenAI) for Liminal: an AI assistant plugin (liminal_libs.assistants, plugin API 2.0) that
 evaluates standardized arguments through OpenAI's Responses API on your own API key ("ChatGPT
 Codex" here: the codex and GPT models on an API key, a ChatGPT subscription being no key), with the
 usage tiers, models and prices written in, dated, and checked against OpenAI's pages.
@@ -28,7 +28,7 @@ this plugin.
 """
 from __future__ import annotations
 
-from liminal_lib.assistants import AssistantPlugin, Caps, Model, Plan, Source
+from liminal_libs.assistants import AssistantPlugin, Caps, Model, Plan, Source
 
 from .assistant import API, CodexAssistant
 

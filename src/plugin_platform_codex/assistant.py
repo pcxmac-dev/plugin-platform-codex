@@ -1,4 +1,4 @@
-"""OpenAI's Responses API through the contract's client (liminal_lib.assistants.ResponsesAssistant),
+"""OpenAI's Responses API through the contract's client (liminal_libs.assistants.ResponsesAssistant),
 as OpenAI documents it at https://developers.openai.com/api/docs (verified 2026-11-03): POST
 /v1/responses with `instructions`, `input`, `max_output_tokens` (16 at least), `store` false,
 `safety_identifier` (a digest of the account: the field takes no identifying information),
@@ -7,7 +7,7 @@ reasoning details; the errors' `{error: {message, type, code, param}}` shape; th
 headers, from which Connect reads the usage tier."""
 from __future__ import annotations
 
-from liminal_lib.assistants import ResponsesAssistant
+from liminal_libs.assistants import ResponsesAssistant
 
 API = "https://api.openai.com"
 

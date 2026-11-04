@@ -3,19 +3,19 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "platform-plugin-codex"
+name = "plugin-platform-codex"
 version = "0.2.0"  # the plugin's own release (CHANGELOG.md); the app shows it on the Plugins view
 description = "Codex for Liminal: OpenAI's codex and GPT models through the Responses API, evaluating standardized arguments on your own API key, with the usage tiers and prices written in."
 readme = "README.md"
 requires-python = ">=3.10"
-# the library it plugs into (the AI assistant kind: liminal_lib.assistants, plugin API 2.0)
-dependencies = ["liminal-lib>=1.3.0"]
+# the library it plugs into (the AI assistant kind: liminal_libs.assistants, plugin API 2.0)
+dependencies = ["liminal-libs>=1.4.0"]
 
 [project.optional-dependencies]
 dev = ["pytest>=8"]
 
 [project.entry-points."liminal.providers"]
-codex = "platform_plugin_codex"
+codex = "plugin_platform_codex"
 
 [tool.setuptools.packages.find]
 where = ["src"]

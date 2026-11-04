@@ -10,12 +10,12 @@ from datetime import datetime, timezone
 
 import pytest
 
-from liminal_lib.assistants import Answer, Question, Usage, evaluate
-from liminal_lib.errors import NotEntitled, SourceError, Unauthorized
-from liminal_lib.ratelimit import fingerprint
+from liminal_libs.assistants import Answer, Question, Usage, evaluate
+from liminal_libs.errors import NotEntitled, SourceError, Unauthorized
+from liminal_libs.ratelimit import fingerprint
 
-import platform_plugin_codex as codex
-from platform_plugin_codex import ASSISTANT, MODELS, PLANS, SOURCES, CodexPlugin
+import plugin_platform_codex as codex
+from plugin_platform_codex import ASSISTANT, MODELS, PLANS, SOURCES, CodexPlugin
 
 from conftest import FakeResponse, FakeSession
 
@@ -49,7 +49,7 @@ def test_it_loads_as_an_assistant_plugin(installed):
     assert isinstance(p, CodexPlugin) and p.KIND == "assistant" and p.SYSTEM == "platform" and p.api == "2.0" and p.vendor == "OpenAI"
     assert [k.name for k in p.keys] == ["CODEX_API_KEY", "CODEX_ACCOUNT"] and p.keys[0].aliases == ("OPENAI_API_KEY",)
     assert p.options == ("CODEX_MAX_OUTPUT_TOKENS", "CODEX_EFFORT") and p.plan_choices["CODEX_EFFORT"][:3] == ("", "none", "minimal")
-    from liminal_lib.sources import registry
+    from liminal_libs.sources import registry
 
     assert registry.errors() == [] and set(registry.variables()) >= {"CODEX_API_KEY", "OPENAI_API_KEY", "CODEX_PLAN", "CODEX_MODEL"}
 
@@ -123,6 +123,6 @@ def test_connect_reads_the_tier_from_the_headers(installed, settings_for):
     assert not rows["the table's models"][0] and "gpt-5.3-codex" in rows["the table's models"][1]
     assert rows["its plan"] == (True, "the server allows 5,000 requests a minute and 1,000,000 tokens a minute: the Build plan")
     assert scanned.plan == {"CODEX_PLAN": "build"}
-    from liminal_lib.config import with_detected
+    from liminal_libs.config import with_detected
 
     assert with_detected(settings, scanned.plan).plugin("codex").plan == "build"  # the free default gives way to the tier found
